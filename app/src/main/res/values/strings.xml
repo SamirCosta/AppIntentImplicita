@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">AppIntentImplicita</string>
+    <string name="intentEmail">Enviar email</string>
+    <string name="intentEnd">Encontrar endereço</string>
+    <string name="intentTel">Telefonar</string>
+    <string name="enviarEmail">ENVIAR</string>
+    <string name="textoDestin">Digite o destinatário</string>
+    <string name="textoAssunto">Digite o assunto</string>
+    <string name="textoTexto">Digite o texto</string>
+    <string name="numTel">Digite o telefone</string>
+    <string name="btTel">TELEFONAR</string>
+    <string name="btEnd">PROCURAR ENDEREÇO</string>
+    <string name="txtEnd">Digite o endereço</string>
+</resources>
