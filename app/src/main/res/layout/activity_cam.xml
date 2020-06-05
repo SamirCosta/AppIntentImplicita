@@ -6,42 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".CamActivity">
 
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="416dp"
+        android:layout_height="111dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorPrimary"
+        android:onClick="capturarImagem"
+        android:text="@string/txtCam"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/layoutLinear"
         android:layout_width="409dp"
-        android:layout_height="148dp"
-        android:orientation="vertical"
+        android:layout_height="194dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:id="@+id/button11"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txtCam" />
-
-        <Button
-            android:id="@+id/button12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txtVerGal" />
-
-        <Button
-            android:id="@+id/button13"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txtSelGal" />
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/button11" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,7 @@
     <string name="btEnd">PROCURAR ENDEREÇO</string>
     <string name="txtEnd">Digite o endereço</string>
     <string name="btnCam">Câmera</string>
-    <string name="txtCam">Câmera</string>
+    <string name="txtCam">Tirar foto</string>
     <string name="txtVerGal">Ver Galeria</string>
     <string name="txtSelGal">Selecionar da Galeria</string>
 </resources>
