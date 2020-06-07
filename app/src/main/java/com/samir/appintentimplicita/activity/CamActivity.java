@@ -1,7 +1,11 @@
-package com.samir.appintentimplicita;
+package com.samir.appintentimplicita.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,13 +17,36 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.samir.appintentimplicita.R;
+import com.samir.appintentimplicita.adapter.Adapter;
+import com.samir.appintentimplicita.model.Imagem;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class CamActivity extends AppCompatActivity {
     private static final int CAPTURAR_IMAGEM = 1;
+    private RecyclerView recyclerView;
+    private List<Imagem> listaImgs = new ArrayList<>();
+    private Bitmap imageBitmap;
 
+    @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cam);
+        recyclerView = findViewById(R.id.recycler);
+
+        this.addImg();
+
+        Adapter adapter = new Adapter(listaImgs);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
+        recyclerView.setAdapter(adapter);
+
     }
 
     public void capturarImagem(View v) {
@@ -36,11 +63,11 @@ public class CamActivity extends AppCompatActivity {
         if (requestCode == CAPTURAR_IMAGEM) {
             if (resultCode == RESULT_OK) {
                 Bundle extras = data.getExtras();
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
-                ImageView imageView = new ImageView(this);
+                imageBitmap = (Bitmap) extras.get("data");
+                /*ImageView imageView = new ImageView(this);
                 imageView.setImageBitmap(imageBitmap);
                 LinearLayout ln = (LinearLayout)findViewById(R.id.layoutLinear);
-                ln.addView(imageView);
+                ln.addView(imageView);*/
                 mostrarMensagem("Imagem capturada!");
             } else {
                 mostrarMensagem("Imagem não capturada!");
@@ -53,6 +80,11 @@ public class CamActivity extends AppCompatActivity {
         Toast.makeText(this, msg,
                 Toast.LENGTH_LONG)
                 .show();
+    }
+
+    public void addImg(){
+        Imagem imagem = new Imagem(imageBitmap);
+        this.listaImgs.add(imagem);
     }
 
 }

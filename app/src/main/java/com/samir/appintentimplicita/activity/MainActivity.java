@@ -1,10 +1,12 @@
-package com.samir.appintentimplicita;
+package com.samir.appintentimplicita.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.samir.appintentimplicita.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void abrirCam(View view){
         Intent intent = new Intent(MainActivity.this, CamActivity.class);
+        startActivity(intent);
+    }
+
+    public void abrirSelGal(View view){
+        Intent intent = new Intent(MainActivity.this, SelGalActivity.class);
         startActivity(intent);
     }
 

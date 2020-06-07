@@ -4,29 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CamActivity">
+    tools:context=".activity.CamActivity">
 
     <Button
         android:id="@+id/button11"
-        android:layout_width="416dp"
-        android:layout_height="111dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
         android:background="@color/colorPrimary"
         android:onClick="capturarImagem"
         android:text="@string/txtCam"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/layoutLinear"
-        android:layout_width="409dp"
-        android:layout_height="194dp"
-        android:orientation="horizontal"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button11" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

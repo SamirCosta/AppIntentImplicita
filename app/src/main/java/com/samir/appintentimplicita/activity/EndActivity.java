@@ -1,4 +1,4 @@
-package com.samir.appintentimplicita;
+package com.samir.appintentimplicita.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import com.samir.appintentimplicita.R;
 
 public class EndActivity extends AppCompatActivity {
     private EditText end;
