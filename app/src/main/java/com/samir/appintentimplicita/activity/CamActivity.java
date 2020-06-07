@@ -37,7 +37,7 @@ public class CamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cam);
         recyclerView = findViewById(R.id.recycler);
 
-        this.addImg();
+
 
         Adapter adapter = new Adapter(listaImgs);
 
@@ -64,6 +64,7 @@ public class CamActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Bundle extras = data.getExtras();
                 imageBitmap = (Bitmap) extras.get("data");
+                this.addImg();
                 /*ImageView imageView = new ImageView(this);
                 imageView.setImageBitmap(imageBitmap);
                 LinearLayout ln = (LinearLayout)findViewById(R.id.layoutLinear);

@@ -1,6 +1,7 @@
 package com.samir.appintentimplicita.adapter;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Imagem img = listaImgs.get(position);
-        holder.img.setImageBitmap(img.getImgBit());
+        Bitmap x = img.getImgBit();
+        Log.i("DEU RUIM","AQUI " + x);
+        holder.img.setImageBitmap(x);
     }
 
     @Override
