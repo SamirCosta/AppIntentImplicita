@@ -1,24 +1,20 @@
 package com.samir.appintentimplicita.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.samir.appintentimplicita.R;
-import com.samir.appintentimplicita.adapter.Adapter;
+import com.samir.appintentimplicita.adapter.CamAdapter;
 import com.samir.appintentimplicita.model.Imagem;
 
 import java.util.ArrayList;
@@ -29,6 +25,7 @@ public class CamActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<Imagem> listaImgs = new ArrayList<>();
     private Bitmap imageBitmap;
+    private CamAdapter camAdapter;
 
     @SuppressLint("MissingPermission")
     @Override
@@ -37,15 +34,12 @@ public class CamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cam);
         recyclerView = findViewById(R.id.recycler);
 
+        camAdapter = new CamAdapter(listaImgs);
 
-
-        Adapter adapter = new Adapter(listaImgs);
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),3);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(camAdapter);
 
     }
 

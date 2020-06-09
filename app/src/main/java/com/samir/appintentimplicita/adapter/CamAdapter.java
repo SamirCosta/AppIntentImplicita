@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,11 +15,11 @@ import com.samir.appintentimplicita.model.Imagem;
 
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
+public class CamAdapter extends RecyclerView.Adapter<CamAdapter.MyViewHolder> {
 
     List<Imagem> listaImgs;
 
-    public Adapter(List<Imagem> lista) {
+    public CamAdapter(List<Imagem> lista) {
         this.listaImgs = lista;
     }
 
@@ -36,7 +35,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Imagem img = listaImgs.get(position);
         Bitmap x = img.getImgBit();
-        Log.i("DEU RUIM","AQUI " + x);
         holder.img.setImageBitmap(x);
     }
 
@@ -50,7 +48,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            img = itemView.findViewById(R.id.imageView);
+            img = itemView.findViewById(R.id.imageView2);
 
         }
     }
