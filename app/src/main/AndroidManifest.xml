@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.samir.appintentimplicita">
-    <uses-feature android:name="android.hardware.camera"/>
+
+    <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -9,9 +11,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SelGalActivity"></activity>
+        <activity android:name=".ZoomActivity"></activity>
+        <activity android:name=".activity.SelGalActivity" />
         <activity android:name=".activity.CamActivity" />
         <activity android:name=".activity.TelActivity" />
         <activity android:name=".activity.EndActivity" />

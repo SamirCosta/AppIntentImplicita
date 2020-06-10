@@ -13,10 +13,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.samir.appintentimplicita.R;
+import com.samir.appintentimplicita.RecyclerItemClickListener;
+import com.samir.appintentimplicita.ZoomActivity;
 import com.samir.appintentimplicita.adapter.GalAdapter;
 import com.samir.appintentimplicita.model.Imagem;
 import com.samir.appintentimplicita.model.ImagemURI;
@@ -38,9 +41,6 @@ public class SelGalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sel_gal);
         recyclerGal = findViewById(R.id.recyclerSelGal);
-
-
-
     }
 
     @Override
@@ -49,11 +49,39 @@ public class SelGalActivity extends AppCompatActivity {
         if (requestCode == CAPTURAR_IMAGEM) {
             if (resultCode == RESULT_OK) {
                 imageUri = data.getData();
+
                 adapterGal = new GalAdapter(imagemss, getApplicationContext());
                 RecyclerView.LayoutManager layoutManagerGal = new GridLayoutManager(getApplicationContext(),2);
                 recyclerGal.setLayoutManager(layoutManagerGal);
                 recyclerGal.setHasFixedSize(true);
                 recyclerGal.setAdapter(adapterGal);
+
+                recyclerGal.addOnItemTouchListener(
+                        new RecyclerItemClickListener(
+                                getApplicationContext(),
+                                recyclerGal,
+                                new RecyclerItemClickListener.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(View view, int position) {
+                                        ImagemURI imagemURI = imagemss.get(position);
+                                        Uri imgZoom = imagemURI.getImgUri();
+                                        String uri_to_string= imgZoom.toString();
+                                        zoom(uri_to_string);
+                                    }
+
+                                    @Override
+                                    public void onLongItemClick(View view, int position) {
+
+                                    }
+
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                    }
+                                }
+                        )
+                );
+
                 this.adicionaImg();
                 mostrarMensagem("Imagem capturada!");
             } else {
@@ -77,6 +105,12 @@ public class SelGalActivity extends AppCompatActivity {
     public void adicionaImg(){
         ImagemURI imagemURI = new ImagemURI(imageUri);
         this.imagemss.add(imagemURI);
+    }
+
+    public void zoom(String imgZoom){
+        Intent intent = new Intent(SelGalActivity.this, ZoomActivity.class);
+        intent.putExtra("img", imgZoom);
+        startActivity(intent);
     }
 
 }

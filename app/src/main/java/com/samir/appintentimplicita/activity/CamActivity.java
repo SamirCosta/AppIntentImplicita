@@ -5,18 +5,25 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.samir.appintentimplicita.R;
+import com.samir.appintentimplicita.RecyclerItemClickListener;
+import com.samir.appintentimplicita.ZoomActivity;
 import com.samir.appintentimplicita.adapter.CamAdapter;
 import com.samir.appintentimplicita.model.Imagem;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +65,31 @@ public class CamActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Bundle extras = data.getExtras();
                 imageBitmap = (Bitmap) extras.get("data");
+                recyclerView.addOnItemTouchListener(
+                        new RecyclerItemClickListener(
+                                getApplicationContext(),
+                                recyclerView,
+                                new RecyclerItemClickListener.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(View view, int position) {
+                                        Imagem imagem = listaImgs.get(position);
+                                        Bitmap x = imagem.getImgBit();
+                                        String imgCam = BitMapToString(x);
+                                        zoom(imgCam);
+                                    }
+
+                                    @Override
+                                    public void onLongItemClick(View view, int position) {
+
+                                    }
+
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                    }
+                                }
+                        )
+                );
                 this.addImg();
                 /*ImageView imageView = new ImageView(this);
                 imageView.setImageBitmap(imageBitmap);
@@ -80,6 +112,20 @@ public class CamActivity extends AppCompatActivity {
     public void addImg(){
         Imagem imagem = new Imagem(imageBitmap);
         this.listaImgs.add(imagem);
+    }
+
+    public String BitMapToString(Bitmap bitmap){
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp=Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
+    }
+
+    public void zoom(String imgZoom){
+        Intent intent = new Intent(CamActivity.this, ZoomActivity.class);
+        intent.putExtra("imgBit", imgZoom);
+        startActivity(intent);
     }
 
 }
