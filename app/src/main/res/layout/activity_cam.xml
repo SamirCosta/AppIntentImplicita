@@ -9,7 +9,7 @@
     <Button
         android:id="@+id/button11"
         android:layout_width="0dp"
-        android:layout_height="110dp"
+        android:layout_height="150dp"
         android:background="@color/colorPrimary"
         android:onClick="capturarImagem"
         android:text="@string/txtCam"
